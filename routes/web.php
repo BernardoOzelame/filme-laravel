@@ -8,6 +8,10 @@ Route::get('/', function () {
     return view('inicial');
 })->name('index'); 
 
+Route::get('/inicial', function () {
+    return view('inicial');
+})->name('index'); 
+
 Route::get('/filmes', [FilmesController::class, 'index'])->name('filmes');
 
 Route::get('/filmes/cadastrar', [FilmesController::class, 'cadastrar'])->name('filmes/cadastrar');
