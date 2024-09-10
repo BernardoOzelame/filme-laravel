@@ -50,6 +50,7 @@
             </div>
             <div>
                 <button type="submit">Gravar</button>
+                <a href="{{ route('filmes') }}">Cancelar</a>
             </div>
         </form>
     </div>
