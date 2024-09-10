@@ -18,7 +18,6 @@ class FilmesController extends Controller {
     }
 
     public function gravar(Request $form) {
-        dd($form);
         $dados = $form->validate([
             'nome' => 'required',
             'sinopse' => 'required',
@@ -31,11 +30,11 @@ class FilmesController extends Controller {
         return redirect()->route('filmes');
     }
 
-    public function editar(Filme $func) {
-        return view('filmes/editar', ['func' => $func]);
+    public function editar(Filme $film) {
+        return view('filmes/editar', ['film' => $film]);
     }
 
-    public function editarGravar(Request $form, Filme $func){
+    public function editarGravar(Request $form, Filme $film){
         $dados = $form->validate([
             'nome' => 'required',
             'sinopse' => 'required',
@@ -44,19 +43,19 @@ class FilmesController extends Controller {
             'linkTrailer' => 'required',
         ]);
 
-        $func->fill($dados);
-        $func->save();
+        $film->fill($dados);
+        $film->save();
         return redirect()->route('filmes');
     }
 
-    public function apagar (Filme $func){
+    public function apagar (Filme $film){
         return view('filmes/apagar', [
-            'filmes' => $func,
+            'filmes' => $film,
         ]);
     }
 
-    public function deletar (Filme $func){
-        $func->delete();
+    public function deletar (Filme $film){
+        $film->delete();
         return redirect()->route('filmes');
     }
 }

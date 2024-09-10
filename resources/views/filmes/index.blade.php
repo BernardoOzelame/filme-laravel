@@ -1,5 +1,5 @@
 <p>
-    <a href="{{ route('filmes/cadastrar') }}">Cadastrar animal</a>
+    <a href="{{ route('filmes/cadastrar') }}">Cadastrar filme</a>
 </p>
 <p>Veja nossa lista de filmes</p>
 
@@ -34,6 +34,7 @@
                 </iframe>
             </td>
             <td><a href="{{ route('filmes/apagar', $filme['id']) }}">Apagar</a></td>
+            <td><a href="{{ route('filmes/editar', $filme['id']) }}">Editar</a></td>
         </tr>
     @endforeach
 </table>
