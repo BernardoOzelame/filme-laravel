@@ -1,9 +1,3 @@
-@extends('base')
-
-@section('titulo', 'Login | Usuários')
-
-@section ('conteudo')
-
 @if($errors->any())
     <div>
         <h4>Preenche a porcaria do formulário</h4>
@@ -29,5 +23,3 @@
         <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" type="submit">Entrar</button>
     </div>
 </form>
-
-@endsection
