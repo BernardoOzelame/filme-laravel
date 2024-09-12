@@ -1,56 +1,47 @@
+@extends('base')
 
-<!-- <p>Preencha o formulário</p> -->
+@section('titulo', 'Filmes')
 
-@if($errors->any())
-    <div>
-        <h4>Ocorreu o(s) seguinte(s) erro(s):</h4>
-        <ul>
-            @foreach($errors->all() as $erro)
-                <li>{{ $erro }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+@section ('conteudo')
+    <a href="{{ route('filmes') }}" class="btn btn-danger btn-cancelar">Cancelar</a>
 
-<!-- <form method="post" action="{{ route('filmes/gravar') }}">
-    @csrf
-    <input type="text" name="nome" placeholder="Nome" value="{{ old('nome') }}">
-    <br>
-    <input type="text" name="cargo" placeholder="Cargo" value="{{ old('cargo') }}">
-    <br>
-    <input type="text" name="departamento" placeholder="Departamento" value="{{ old('departamento') }}">
-    <br>
-    <input type="number" step='any' name="salario" placeholder="Salário" value="{{ old('salario') }}">
-    <br>
-    <input type="submit" value="Gravar">
-</form> -->
+    @if($errors->any())
+        <div class="alert alert-danger m-5" style="margin-top: 70px !important">
+            <h4>Ocorreu o(s) seguinte(s) erro(s):</h4>
+            <ul>
+                @foreach($errors->all() as $erro)
+                    <li>{{ $erro }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
-    <div >
-        <form method="post" enctype="multipart/form-data" action="{{ route('filmes/editar', $film->id)  }}">
-        @csrf
-        @method('put')
-            <div >
-                <label for="name">Nome</label>
-                    <input placeholder="Nome" value="{{ old('nome', $film->nome ?? '') }}" name="nome" type="text">
+    <div class="container" style="margin-top: 70px">
+        <form method="post" enctype="multipart/form-data" action="{{ route('filmes/editar', $film->id) }}">
+            @csrf
+            @method('put')
+            <div class="mb-3">
+                <label for="name" class="form-label">Nome</label>
+                <input placeholder="Nome" value="{{ old('nome', $film->nome ?? '') }}" name="nome" type="text" class="form-control">
             </div>
-            <div >
-                <label for="sinopse">Sinopse</label>
-                    <input placeholder="Sinopse" value="{{ old('sinopse', $film->sinopse ?? '') }}" name="sinopse" type="text">
+            <div class="mb-3">
+                <label for="sinopse" class="form-label">Sinopse</label>
+                <input placeholder="Sinopse" value="{{ old('sinopse', $film->sinopse ?? '') }}" name="sinopse" type="text" class="form-control">
             </div>
-            <div >
-                <label for="ano">Ano</label>
-                    <input placeholder="Ano" value="{{ old('ano', $film->ano ?? '') }}" name="ano" type="number">
+            <div class="mb-3">
+                <label for="ano" class="form-label">Ano</label>
+                <input placeholder="Ano" value="{{ old('ano', $film->ano ?? '') }}" name="ano" type="number" class="form-control">
             </div>
-            <div>
-                <label for="categoria">Categoria</label>
-                    <input placeholder="Categoria" value="{{ old('categoria', $film->categoria ?? '') }}" name="categoria" type="text">
+            <div class="mb-3">
+                <label for="categoria" class="form-label">Categoria</label>
+                <input placeholder="Categoria" value="{{ old('categoria', $film->categoria ?? '') }}" name="categoria" type="text" class="form-control">
             </div>
-            <div >
-                <label for="categoria">Link do trailer</label>
-                    <input placeholder="Link do trailer" value="{{ old('linkTrailer', $film->linkTrailer ?? '') }}" name="linkTrailer" type="text">
+            <div class="mb-3">
+                <label for="linkTrailer" class="form-label">Link do trailer</label>
+                <input placeholder="Link do trailer" value="{{ old('linkTrailer', $film->linkTrailer ?? '') }}" name="linkTrailer" type="text" class="form-control">
             </div>
-            <div>
-                <button type="submit">Gravar</button>
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary">Gravar</button>
             </div>
-        </form>
+        </form>        
     </div>

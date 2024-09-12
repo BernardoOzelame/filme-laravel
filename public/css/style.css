@@ -70,3 +70,9 @@
     top: 15px;
     right: 15px;
 }
+
+.btn-cancelar {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+}

@@ -33,17 +33,25 @@
             @foreach($filmes as $filme)
                 <tr scope="row" class="align-middle">
                     <td>
-                        <a href="{{ route('filmes/editar', $filme['id']) }}" class="text-decoration-none text-dark d-block p-2">
+                        <a title="Editar" href="{{ route('filmes/editar', $filme['id']) }}" class="text-decoration-none text-dark d-block p-2">
                             {{ $filme['nome'] }}
                         </a>
                     </td>
                     <td>
-                        <a href="{{ route('filmes/editar', $filme['id']) }}" class="text-decoration-none text-dark d-block p-2">
+                        <a title="Editar" href="{{ route('filmes/editar', $filme['id']) }}" class="text-decoration-none text-dark d-block p-2">
                             {{ $filme['sinopse'] }}
                         </a>
                     </td>
-                    <td>{{ $filme['ano'] }}</td>
-                    <td>{{ $filme['categoria'] }}</td>
+                    <td>
+                        <a title="Editar" href="{{ route('filmes/editar', $filme['id']) }}" class="text-decoration-none text-dark d-block p-2">
+                            {{ $filme['ano'] }}
+                        </a>
+                    </td>
+                    <td>
+                        <a title="Editar" href="{{ route('filmes/editar', $filme['id']) }}" class="text-decoration-none text-dark d-block p-2">
+                            {{ $filme['categoria'] }}
+                        </a>
+                    </td>
                     <td>
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#trailerModal{{ $filme['id'] }}">
                             Ver trailer
@@ -79,7 +87,15 @@
                             </div>
                         </div>
                     </td>
-                    <td class="text-center"><a href="{{ route('filmes/apagar', $filme['id']) }}"><i class="fa-solid fa-delete-left text-danger fs-4 text-center"></i></a></td>
+                    <td class="text-center">
+                        <a href="#" class="btn-delete" data-id="{{ $filme['id'] }}">
+                            <i class="fa-solid fa-delete-left text-danger fs-4 text-center"></i>
+                        </a>
+                        <form id="delete-form-{{ $filme['id'] }}" method="post" action="{{ route('filmes/apagar', $filme['id']) }}" style="display:none;">
+                            @method('delete')
+                            @csrf
+                        </form>
+                    </td>             
                 </tr>
             @endforeach
         </table>
