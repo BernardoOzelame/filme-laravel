@@ -23,21 +23,36 @@
     <div class="container">
         <table border="1" class="table table-striped table-hover">
             <tr>
-                <th>Capa</th>
+                <th class="ps-3">Capa</th>
                 <th class="ps-3">Nome</th>
                 <th class="ps-3">Sinopse</th>
-                <th>Ano</th>
-                <th>Categoria</th>
-                <th>Trailer</th>
+                <th class="ps-3">Ano</th>
+                <th class="ps-3">Categoria</th>
+                <th class="ps-3">Trailer</th>
                 <th></th>
             </tr>
             @foreach($filmes as $filme)
                 <tr scope="row" class="align-middle">
                     <td>
-                        <a title="Editar" href="{{ route('filmes/editar', $filme['id']) }}" class="text-decoration-none text-dark d-block p-2">
-                            <img src="{{ asset('img/' . $filme['imagem']) }}">
+                        <a title="Ver capa do filme" class="text-decoration-none text-dark d-block p-2" data-bs-toggle="modal" data-bs-target="#imagemModal{{ $filme['id'] }}">
+                            <img style="max-width: 100px" src="{{ asset('img/' . $filme['imagem']) }}">
                         </a>
-                    </td>
+                        <div class="modal fade" id="imagemModal{{ $filme['id'] }}" tabindex="-1" aria-labelledby="imagemModalLabel{{ $filme['id'] }}" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered"  style="min-width: 50% !important">
+                                <div class="modal-content">
+                                    <div class="modal-header" style="justify-content: center !important;">
+                                        <h5 class="modal-title" id="imagemModalLabel{{ $filme['id'] }}">Capa do Filme</h5>
+                                    </div>
+                                    <div class="modal-body text-center">
+                                        <img style="max-width: 75%; max-height: 75%" src="{{ asset('img/' . $filme['imagem']) }}">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>                    
                     <td>
                         <a title="Editar" href="{{ route('filmes/editar', $filme['id']) }}" class="text-decoration-none text-dark d-block p-2">
                             {{ $filme['nome'] }}
@@ -87,7 +102,7 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
                                     </div>
                                 </div>
                             </div>

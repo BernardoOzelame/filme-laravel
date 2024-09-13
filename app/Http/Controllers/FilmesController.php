@@ -25,7 +25,6 @@ class FilmesController extends Controller {
     }
 
     public function gravar(Request $form) {
-        $img = $form->file('imagem')->store('filmes', 'imagens');
         $dados = $form->validate([
             'nome' => 'required',
             'sinopse' => 'required',
@@ -34,7 +33,8 @@ class FilmesController extends Controller {
             'linkTrailer' => 'required',
             'imagem' => 'required'
         ]);
-        $dados['imagem']= $img;
+        $img = $form->file('imagem')->store('filmes', 'imagens');
+        $dados['imagem'] = $img;
         Filme::create($dados);
         return redirect()->route('filmes');
     }
@@ -50,7 +50,15 @@ class FilmesController extends Controller {
             'ano' => 'required|integer',
             'categoria' => 'required',
             'linkTrailer' => 'required',
+            'imagem' => 'nullable|image'
         ]);
+
+        if ($form->hasFile('imagem')) {
+            $img = $form->file('imagem')->store('filmes', 'imagens');
+            $dados['imagem'] = $img;
+        } else {
+            $dados['imagem'] = $film->imagem;
+        }
 
         $film->fill($dados);
         $film->save();
