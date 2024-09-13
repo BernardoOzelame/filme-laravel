@@ -13,6 +13,13 @@ class FilmesController extends Controller {
         ]); 
     }
 
+    public function galeria(){
+        $dados = Filme::all();
+        return view('filmes/inicial', [ 
+            'filmes' => $dados,
+        ]); 
+    }
+
     public function cadastrar() {
         return view('filmes/cadastrar');
     }

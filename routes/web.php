@@ -12,6 +12,9 @@ Route::get('/inicial', function () {
     return view('inicial');
 })->name('index'); 
 
+Route::get('/inicial', [FilmesController::class, 'galeria'])->name('filmes');
+
+
 Route::prefix('filmes')->middleware('auth')->group(function() {
     Route::get('/', [FilmesController::class, 'index'])->name('filmes');
 

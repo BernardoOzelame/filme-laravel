@@ -27,7 +27,7 @@
             </div>
             <div class="mb-4">
                 <label for="password">Senha</label>
-                <input id="password" name="password" type="text" placeholder="Senha" aria-label="Senha" class="form-control w-100">
+                <input id="password" name="password" type="password" placeholder="Senha" aria-label="Senha" class="form-control w-100">
             </div>
             <div class="d-flex justify-content-center">
                 <button type="submit" class="btn btn-primary">Entrar</button>
