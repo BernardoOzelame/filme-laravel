@@ -18,15 +18,17 @@ class FilmesController extends Controller {
     }
 
     public function gravar(Request $form) {
+        $img = $form->file('imagem')->store('filmes', 'imagens');
         $dados = $form->validate([
             'nome' => 'required',
             'sinopse' => 'required',
             'ano' => 'required|integer',
             'categoria' => 'required',
             'linkTrailer' => 'required',
+            'imagem' => 'required'
         ]);
+        $dados['imagem']= $img;
         Filme::create($dados);
-        
         return redirect()->route('filmes');
     }
 

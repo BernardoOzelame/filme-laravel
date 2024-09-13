@@ -23,6 +23,7 @@
     <div class="container">
         <table border="1" class="table table-striped table-hover">
             <tr>
+                <th>Capa</th>
                 <th class="ps-3">Nome</th>
                 <th class="ps-3">Sinopse</th>
                 <th>Ano</th>
@@ -32,6 +33,11 @@
             </tr>
             @foreach($filmes as $filme)
                 <tr scope="row" class="align-middle">
+                    <td>
+                        <a title="Editar" href="{{ route('filmes/editar', $filme['id']) }}" class="text-decoration-none text-dark d-block p-2">
+                            <img src="{{ asset('img/' . $filme['imagem']) }}">
+                        </a>
+                    </td>
                     <td>
                         <a title="Editar" href="{{ route('filmes/editar', $filme['id']) }}" class="text-decoration-none text-dark d-block p-2">
                             {{ $filme['nome'] }}

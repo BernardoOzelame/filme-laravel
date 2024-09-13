@@ -1,6 +1,6 @@
 @extends('base')
 
-@section('titulo', 'aAAa')
+@section('titulo', 'Filmes')
 
 @section ('conteudo')
 @if (Auth::user())

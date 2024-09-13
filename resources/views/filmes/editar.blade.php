@@ -40,6 +40,18 @@
                 <label for="linkTrailer" class="form-label">Link do trailer</label>
                 <input placeholder="Link do trailer" value="{{ old('linkTrailer', $film->linkTrailer ?? '') }}" name="linkTrailer" type="text" class="form-control">
             </div>
+            <div class="mb-3">
+                <label for="imagem" class="form-label">Imagem</label>
+                @if(!empty($film->imagem))
+                    <!-- Mostra a imagem atual -->
+                    <div class="mb-3">
+                        <img src="{{ asset('img/' . $film->imagem) }}" alt="Imagem do filme" class="img-fluid" style="max-width: 300px;">
+                    </div>
+                @endif
+
+                <!-- Sempre exibe o campo de upload para permitir alteração -->
+                <input class="form-control" id="imagem" name="imagem" type="file" placeholder="Imagem" aria-label="Imagem">
+            </div>
             <div class="d-flex justify-content-end">
                 <button type="submit" class="btn btn-primary">Gravar</button>
             </div>

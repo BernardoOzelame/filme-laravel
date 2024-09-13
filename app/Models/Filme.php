@@ -15,5 +15,6 @@ class Filme extends Model {
         'ano',
         'categoria',
         'linkTrailer',
+        'imagem'
     ];
 }

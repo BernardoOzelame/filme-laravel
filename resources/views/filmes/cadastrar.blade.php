@@ -39,6 +39,10 @@
                 <label for="linkTrailer" class="form-label">Link do trailer</label>
                 <input placeholder="Link do trailer" value="{{ old('linkTrailer') }}" name="linkTrailer" type="text" class="form-control">
             </div>
+            <div class="mb-3">
+                <label for="imagem" for="imagem">Imagem</label>
+                <input class="form-control" id="imagem" name="imagem" type="file" placeholder="Imagem" aria-label="Imagem">
+            </div>
             <div class="d-flex justify-content-end">
                 <button type="submit" class="btn btn-primary">Gravar</button>
             </div>
