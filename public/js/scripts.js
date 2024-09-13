@@ -3,6 +3,15 @@ function toggleMenu() {
     menu.classList.toggle('active');
 }
 
+document.addEventListener('click', function (event) {
+    const menu = document.querySelector('.menu');
+    const isClickInsideMenu = menu.contains(event.target);
+
+    if (!isClickInsideMenu && menu.classList.contains('active')) {
+        menu.classList.remove('active');
+    }
+});
+
 document.querySelectorAll('.btn-delete').forEach(button => {
     button.addEventListener('click', function(event) {
         event.preventDefault();

@@ -5,7 +5,7 @@
 @section ('conteudo')
     <a href="{{ route('usuarios') }}" class="btn btn-danger btn-cancelar">Cancelar</a>
     @if($errors->any())
-        <div>
+        <div class="alert alert-danger m-5" style="margin-top: 70px !important">
             <h4>Ocorreu o(s) seguinte(s) erro(s):</h4>
             <ul>
                 @foreach($errors->all() as $erro)
@@ -33,15 +33,7 @@
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Senha</label>
-                <input type="password" name="password" placeholder="Senha" value="{{ old('password', $user->password ?? '') }}" class="form-control">
-            </div>
-            <div class="mb-3">
-                <label for="admin" class="form-label">Admin?</label>
-                <select name="admin" class="form-select">
-                    <option value="null">Selecione</option>
-                    <option value="0" @if($user->admin == 0) selected @endif>Não</option>
-                    <option value="1" @if($user->admin == 1) selected @endif>Sim</option>
-                </select>
+                <input type="password" name="password" placeholder="Senha" class="form-control">
             </div>
             <div class="d-flex justify-content-end">
                 <button type="submit" class="btn btn-primary">Editar</button>

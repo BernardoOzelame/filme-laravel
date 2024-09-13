@@ -12,7 +12,6 @@ return new class extends Migration {
             $table->string('email', 255);
             $table->string('username', 255);
             $table->string('password', 255);
-            $table->boolean('admin')->default(0);
             $table->timestamps();
         });
     }

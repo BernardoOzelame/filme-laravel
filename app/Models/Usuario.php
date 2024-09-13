@@ -15,7 +15,6 @@ class Usuario extends Model implements Authenticatable {
         'email',
         'username',
         'password',
-        'admin'
     ];
 
     function getAuthIdentifierName() {

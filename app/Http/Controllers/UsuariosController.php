@@ -25,7 +25,6 @@ class UsuariosController extends Controller {
             'email' => 'required|email|unique:usuarios',
             'username' => 'required',
             'password' => 'required',
-            'admin' => 'required|in:0,1',
         ]);
 
         $dados['password'] = Hash::make($dados['password']);
@@ -44,9 +43,14 @@ class UsuariosController extends Controller {
             'name' => 'required',
             'email' => 'required|email',
             'username' => 'required',
-            'password' => 'required',
-            'admin' => 'required|in:0,1',
+            'password' => 'nullable',
         ]);
+
+        if ($form->filled('password')) {
+            $dados['password'] = Hash::make($dados['password']);
+        } else {
+            unset($dados['password']);
+        }
 
         $user->fill($dados);
         $user->save();

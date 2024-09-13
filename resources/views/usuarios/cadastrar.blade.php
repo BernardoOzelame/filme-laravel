@@ -3,7 +3,7 @@
 @section('titulo', 'Usuários')
 
 @section('conteudo')
-    <a href="{{ route('filmes') }}" class="btn btn-danger btn-cancelar">Cancelar</a>
+    <a href="{{ route('usuarios') }}" class="btn btn-danger btn-cancelar">Cancelar</a>
 
     @if($errors->any())
         <div class="alert alert-danger m-5" style="margin-top: 70px !important">
@@ -34,14 +34,6 @@
             <div class="mb-3">
                 <label for="password" class="form-label">Senha</label>
                 <input type="password" name="password" placeholder="Senha" value="{{ old('password') }}" class="form-control">
-            </div>
-            <div class="mb-3">
-                <label for="admin" class="form-label">Admin?</label>
-                <select name="admin" class="form-select">
-                    <option value="null" selected>Selecione</option>
-                    <option value="0">Não</option>
-                    <option value="1">Sim</option>
-                </select>
             </div>
             <div class="d-flex justify-content-end">
                 <button type="submit" class="btn btn-primary">Gravar</button>

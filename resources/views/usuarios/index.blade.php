@@ -25,8 +25,7 @@
             <tr>
                 <th>Nome</th>
                 <th>E-mail</th>
-                <th>Usuário</th>           
-                <th>Admin?</th>            
+                <th>Usuário</th>          
                 <th></th>
             </tr>
             @foreach($usuarios as $usuario)
@@ -44,11 +43,6 @@
                     <td>
                         <a title="Editar" href="{{ route('usuarios/editar', $usuario['id']) }}" class="text-decoration-none text-dark d-block p-2">
                             {{ $usuario['username'] }}
-                        </a>
-                    </td>
-                    <td>
-                        <a title="Editar" href="{{ route('usuarios/editar', $usuario['id']) }}" class="text-decoration-none text-dark d-block p-2">
-                            @if($usuario['admin'] == 0) Não @else Sim @endif
                         </a>
                     </td>
                     <td class="text-center">

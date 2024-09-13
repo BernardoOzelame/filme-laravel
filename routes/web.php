@@ -12,19 +12,21 @@ Route::get('/inicial', function () {
     return view('inicial');
 })->name('index'); 
 
-Route::get('/filmes', [FilmesController::class, 'index'])->name('filmes');
+Route::prefix('filmes')->middleware('auth')->group(function() {
+    Route::get('/', [FilmesController::class, 'index'])->name('filmes');
 
-Route::get('/filmes/cadastrar', [FilmesController::class, 'cadastrar'])->name('filmes/cadastrar');
+    Route::get('/cadastrar', [FilmesController::class, 'cadastrar'])->name('filmes/cadastrar');
 
-Route::post('/filmes/cadastrar', [FilmesController::class, 'gravar'])->name('filmes/gravar');
+    Route::post('/cadastrar', [FilmesController::class, 'gravar'])->name('filmes/gravar');
 
-Route::get('/filmes/editar/{film}', [FilmesController::class, 'editar'])->name('filmes/editar');
+    Route::get('/editar/{film}', [FilmesController::class, 'editar'])->name('filmes/editar');
 
-Route::put('/filmes/editar/{film}', [FilmesController::class, 'editarGravar']);
+    Route::put('/editar/{film}', [FilmesController::class, 'editarGravar']);
 
-Route::get('/filmes/apagar/{film}', [FilmesController::class, 'apagar'])->name('filmes/apagar'); 
+    Route::get('/apagar/{film}', [FilmesController::class, 'apagar'])->name('filmes/apagar'); 
 
-Route::delete('filmes/apagar/{film}', [FilmesController::class, 'deletar']);
+    Route::delete('/apagar/{film}', [FilmesController::class, 'deletar']);
+});
 
 //----------------------------------------------------------------------------------------------------------------------
 
