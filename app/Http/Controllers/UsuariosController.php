@@ -26,11 +26,8 @@ class UsuariosController extends Controller {
             'username' => 'required',
             'password' => 'required',
         ]);
-
         $dados['password'] = Hash::make($dados['password']);
-
         Usuario::create($dados);
-
         return redirect()->route('usuarios');
     }
 
@@ -45,13 +42,11 @@ class UsuariosController extends Controller {
             'username' => 'required',
             'password' => 'nullable',
         ]);
-
         if ($form->filled('password')) {
             $dados['password'] = Hash::make($dados['password']);
         } else {
             unset($dados['password']);
         }
-
         $user->fill($dados);
         $user->save();
         return redirect()->route('usuarios');
@@ -70,20 +65,16 @@ class UsuariosController extends Controller {
 
     public function login(Request $form) {
         if($form->isMethod('POST')) {
-            // Pega os dados do formulário
             $credenciais = $form->validate([
                 'username' => 'required',
                 'password' => 'required',
             ]);
-
-            // Tenta fazer o login
             if(Auth::attempt($credenciais)){
                 return redirect()->intended(route('filmes'));
             } else {
                 return redirect()->route('login')->with('erro', 'Usuário ou senha inválidos');
             }
         }
-
         return view('usuarios/login');
     }
 

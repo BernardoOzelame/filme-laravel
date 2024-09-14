@@ -4,6 +4,7 @@
 
 @section ('conteudo')
     <a href="{{ route('usuarios') }}" class="btn btn-danger btn-cancelar">Cancelar</a>
+
     @if($errors->any())
         <div class="alert alert-danger m-5" style="margin-top: 70px !important">
             <h4>Ocorreu o(s) seguinte(s) erro(s):</h4>
@@ -40,5 +41,4 @@
             </div>
         </form>
     </div>
-
 @endsection

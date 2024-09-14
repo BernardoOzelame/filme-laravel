@@ -13,10 +13,18 @@ class FilmesController extends Controller {
         ]); 
     }
 
-    public function galeria(){
-        $dados = Filme::all();
-        return view('filmes/inicial', [ 
+    public function galeria(Request $request) {
+        $categoria = $request->input('categoria');
+        if ($categoria) {
+            $dados = Filme::where('categoria', $categoria)->get();
+        } else {
+            $dados = Filme::all();
+        }
+        $categorias = Filme::distinct()->pluck('categoria');
+        return view('/inicial', [ 
             'filmes' => $dados,
+            'categorias' => $categorias,
+            'categoriaSelecionada' => $categoria,
         ]); 
     }
 
@@ -38,7 +46,7 @@ class FilmesController extends Controller {
             'imagem' => 'required|image'
         ], [
             'linkTrailer.regex' => 'O link do trailer deve ser uma URL válida do YouTube com o parâmetro "v".',
-    ]);
+        ]);
         $img = $form->file('imagem')->store('filmes', 'imagens');
         $dados['imagem'] = $img;
         Filme::create($dados);
@@ -63,15 +71,13 @@ class FilmesController extends Controller {
             'imagem' => 'nullable|required|image'
         ], [
             'linkTrailer.regex' => 'O link do trailer deve ser uma URL válida do YouTube com o parâmetro "v".',
-    ]);
-
+        ]);
         if ($form->hasFile('imagem')) {
             $img = $form->file('imagem')->store('filmes', 'imagens');
             $dados['imagem'] = $img;
         } else {
             $dados['imagem'] = $film->imagem;
         }
-
         $film->fill($dados);
         $film->save();
         return redirect()->route('filmes');

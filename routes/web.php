@@ -4,15 +4,8 @@ use App\Http\Controllers\FilmesController;
 use App\Http\Controllers\UsuariosController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('inicial');
-})->name('index'); 
-
-Route::get('/inicial', function () {
-    return view('inicial');
-})->name('index'); 
-
-Route::get('/inicial', [FilmesController::class, 'galeria'])->name('filmes');
+Route::get('/', [FilmesController::class, 'galeria'])->name('index');
+Route::get('/inicial', [FilmesController::class, 'galeria'])->name('inicial');
 
 
 Route::prefix('filmes')->middleware('auth')->group(function() {
@@ -31,8 +24,6 @@ Route::prefix('filmes')->middleware('auth')->group(function() {
     Route::delete('/apagar/{film}', [FilmesController::class, 'deletar']);
 });
 
-//----------------------------------------------------------------------------------------------------------------------
-
 Route::prefix('usuarios')->middleware('auth')->group(function() {
     Route::get('/', [UsuariosController::class, 'index'])->name('usuarios');
 
@@ -48,9 +39,6 @@ Route::prefix('usuarios')->middleware('auth')->group(function() {
     
     Route::delete('/apagar/{user}', [UsuariosController::class, 'deletar']);
 });
-
-
-//----------------------------------------------------------------------------------------------------------------------
 
 Route::get('/login', [UsuariosController::class, 'login'])->name('login');
 
