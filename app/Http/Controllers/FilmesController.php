@@ -30,9 +30,15 @@ class FilmesController extends Controller {
             'sinopse' => 'required',
             'ano' => 'required|integer',
             'categoria' => 'required',
-            'linkTrailer' => 'required',
-            'imagem' => 'required'
-        ]);
+            'linkTrailer' => [
+                'required',
+                'url',
+                'regex:/^https:\/\/(www\.)?youtube\.com\/.*[?&]v=([^&]+)/'
+            ],
+            'imagem' => 'required|image'
+        ], [
+            'linkTrailer.regex' => 'O link do trailer deve ser uma URL válida do YouTube com o parâmetro "v".',
+    ]);
         $img = $form->file('imagem')->store('filmes', 'imagens');
         $dados['imagem'] = $img;
         Filme::create($dados);
@@ -49,9 +55,15 @@ class FilmesController extends Controller {
             'sinopse' => 'required',
             'ano' => 'required|integer',
             'categoria' => 'required',
-            'linkTrailer' => 'required',
-            'imagem' => 'nullable|image'
-        ]);
+            'linkTrailer' => [
+                'required',
+                'url',
+                'regex:/^https:\/\/(www\.)?youtube\.com\/.*[?&]v=([^&]+)/'
+            ],
+            'imagem' => 'nullable|required|image'
+        ], [
+            'linkTrailer.regex' => 'O link do trailer deve ser uma URL válida do YouTube com o parâmetro "v".',
+    ]);
 
         if ($form->hasFile('imagem')) {
             $img = $form->file('imagem')->store('filmes', 'imagens');

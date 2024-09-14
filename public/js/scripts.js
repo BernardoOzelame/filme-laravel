@@ -33,3 +33,22 @@ document.querySelectorAll('.btn-delete').forEach(button => {
         });
     });
 });
+
+document.getElementById('logout-link').addEventListener('click', function(event) {
+    event.preventDefault(); // Evita o redirecionamento imediato
+
+    Swal.fire({
+        title: 'Tem certeza?',
+        text: "Você quer sair do sistema?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sim, sair',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById('logout-form').submit(); // Submete o formulário de logout
+        }
+    });
+});

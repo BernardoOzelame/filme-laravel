@@ -1,4 +1,5 @@
 @extends('base')
+@extends('../usuarios/logout')
 
 @section('titulo', 'Usuários')
 
@@ -12,7 +13,7 @@
         <div class="menu-links">
             <a href="{{ route('index') }}">Página Inicial</a>
             <a href="{{ route('filmes') }}">Filmes</a>
-            <a href="{{ route('logout') }}">Logout</a>
+            <a href="#" id="logout-link">Logout</a>
         </div>
     </div>
 

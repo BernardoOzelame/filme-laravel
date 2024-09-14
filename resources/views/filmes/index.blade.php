@@ -1,4 +1,5 @@
 @extends('base')
+@extends('../usuarios/logout')
 
 @section('titulo', 'Filmes')
 
@@ -12,7 +13,7 @@
         <div class="menu-links">
             <a href="{{ route('index') }}">Página Inicial</a>
             <a href="{{ route('usuarios') }}">Usuários</a>
-            <a href="{{ route('logout') }}">Logout</a>
+            <a href="#" id="logout-link">Logout</a>
         </div>
     </div>
 
@@ -86,19 +87,25 @@
                                     </div>
                                     <div class="modal-body">
                                         <div class="ratio ratio-16x9">
-                                            <iframe
-                                                <?php
-                                                    $linkCompleto = $filme['linkTrailer'];
-                                                    $parsedUrl = parse_url($linkCompleto, PHP_URL_QUERY);
-                                                    parse_str($parsedUrl, $queryParams);
-                                                    $videoId = $queryParams['v'];
-                                                ?>
-                                                src="https://www.youtube.com/embed/{{ $videoId }}"
-                                                title="YouTube video player"
-                                                frameborder="0"
-                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                allowfullscreen>
-                                            </iframe>
+                                            <?php
+                                                $linkCompleto = $filme['linkTrailer'];
+                                                $parsedUrl = parse_url($linkCompleto, PHP_URL_QUERY);
+                                                $queryParams = [];
+                                                parse_str($parsedUrl, $queryParams);
+                                                $videoId = isset($queryParams['v']) ? $queryParams['v'] : null;
+                                            ?>
+
+                                            @if($videoId)
+                                                <iframe
+                                                    src="https://www.youtube.com/embed/{{ $videoId }}"
+                                                    title="YouTube video player"
+                                                    frameborder="0"
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                    allowfullscreen>
+                                                </iframe>
+                                            @else
+                                                <p>O link informado é inválido.</p>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="modal-footer">
