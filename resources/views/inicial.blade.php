@@ -14,7 +14,7 @@
         <div class="menu-links">
             <a href="{{ route('filmes') }}">Filmes</a>
             <a href="{{ route('usuarios') }}">Usuários</a>
-            <a href="#" id="logout-link">Logout</a>
+            <a href="{{ route('logout') }}" id="logout-link">Logout</a>
         </div>
     </div>
 @else
@@ -34,6 +34,9 @@
             <button class="btn btn-primary" type="submit">Filtrar</button>
         </div>
     </form>
+    <div>
+        <p class="fs-3" id="carousel-name"></p>
+    </div>
     <div id="carouselExampleCaptions" class="carousel slide">
         <div class="carousel-indicators">
             @foreach($filmes as $index => $filme)
@@ -72,9 +75,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div>
-            <p class="fs-3" id="carousel-name"></p>
         </div>
     </div>
 </div>

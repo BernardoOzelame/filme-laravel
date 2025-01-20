@@ -13,7 +13,7 @@
         <div class="menu-links">
             <a href="{{ route('index') }}">Página Inicial</a>
             <a href="{{ route('usuarios') }}">Usuários</a>
-            <a href="#" id="logout-link">Logout</a>
+            <a href="{{ route('logout') }}" id="logout-link">Logout</a>
         </div>
     </div>
 
@@ -33,7 +33,7 @@
                 <th></th>
             </tr>
             @foreach($filmes as $filme)
-                <tr scope="row" class="align-middle">
+                <tr scope="row" class="align-middle" style="height: 100px; max-height: 100px !important;">
                     <td>
                         <a title="Ver capa do filme" class="text-decoration-none text-dark d-block p-2" data-bs-toggle="modal" data-bs-target="#imagemModal{{ $filme['id'] }}">
                             <img style="max-width: 100px" src="{{ asset('img/' . $filme['imagem']) }}">
